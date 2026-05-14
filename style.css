@@ -1,11 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
-
-.playfair-display-playfair-display {
-  font-family: "Playfair Display", serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-}
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 /* normalize */
 
@@ -20,15 +13,128 @@ html {
 }
 
 body {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 img {
   max-width: 100%;
 }
 
+a {
+  text-decoration: none;
+  color: #333;
+}
+
+ul {
+  list-style: none;
+}
+
+.container {
+  width: 90%;
+  margin: auto;
+}
+
 /* header section  */
+
 header {
-  position: sticky;
-  top: 0;
+  /* position: absolute; */
+  width: 100%;
   z-index: 100;
+  transition: all 0.3s ease;
+  background-color: #111;
+}
+
+header.sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  color: #111;
+}
+
+header img {
+  width: 50px;
+  height: 50px;
+}
+
+header nav ul {
+  display: flex;
+  gap: 20px;
+}
+
+header ul a,
+header .cta a {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #fff;
+  transition: all 0.3s ease;
+  padding: 5px 10px;
+  border-radius: 20px;
+}
+
+header ul a:hover,
+header .cta a:hover {
+  color: #f96216;
+  background-color: #fff;
+}
+
+/* hero section */
+
+#home {
+  height: 150vh;
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("img/bg1.jpg") no-repeat center center/cover;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-align: center;
+}
+
+#home a {
+  color: #272727;
+  background-color: #fff;
+  padding: 14px 28px;
+  border-radius: 50px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+#home a:hover {
+  background-color: transparent;
+  border-color: #fff;
+  color: #fff;
+  transform: translateY(-3px);
+  transition: all 0.3s ease;
+}
+
+#home .hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+#home .hero-content h1 {
+  font-size: clamp(2.5rem, 6vw, 5.5rem);
+  font-family: "Playfair Display", serif;
+  max-width: 850px;
+}
+
+#home .hero-content p {
+  font-size: clamp(1rem, 2vw, 1.35rem);
+  max-width: 650px;
+  line-height: 1.7;
 }

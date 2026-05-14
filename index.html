@@ -5,16 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sapiens Mekelle</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="img/logo.png" type="image/x-icon" />
   </head>
   <body>
     <!-- Navigation -->
     <header>
       <div class="container">
         <!-- logo container -->
-        <div class="log"><img src="img/logo.png" alt="sapiens logo" /></div>
+        <div class="logo">
+          <a href="#home"><img src="img/logo.png" alt="sapiens logo" /></a>
+        </div>
 
         <!-- navigation container -->
-        <div class="nav-container">
+        <nav class="nav-container">
           <ul>
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
@@ -22,7 +25,7 @@
             <li><a href="#reviews">Reviews</a></li>
             <li><a href="#gallery">Gallery</a></li>
           </ul>
-        </div>
+        </nav>
 
         <!-- call to action button -->
         <div class="cta">
@@ -39,7 +42,18 @@
     <!-- Main Content -->
     <main>
       <!-- hero section -->
-      <section id="home"></section>
+      <section id="home">
+        <div class="container">
+          <div class="hero-content">
+            <h1>Hot Pizza. Juicy Burgers. Great Vibes.</h1>
+            <p>
+              From juicy burgers to delicious pizzas, enjoy your favorite meals
+              in a warm and modern atmosphere.
+            </p>
+            <a href="#menu" class="btn">Explore Our Menu</a>
+          </div>
+        </div>
+      </section>
 
       <!-- about section -->
       <section id="about"></section>
@@ -65,5 +79,7 @@
       <!-- footer section -->
       <div></div>
     </footer>
+
+    <script src="script.js"></script>
   </body>
 </html>
