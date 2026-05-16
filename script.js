@@ -454,8 +454,203 @@ function renderReviews() {
     .join("");
 }
 
+const galleryItems = [
+  // ── FOOD ──
+  {
+    src: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800&q=80",
+    label: "Signature Sapiens Burger",
+    category: "food",
+    tall: true,
+  },
+  {
+    src: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=800&q=80",
+    label: "Wood-fired Pizza",
+    category: "food",
+    tall: false,
+  },
+  {
+    src: "https://images.unsplash.com/photo-1606755962773-d324e0a13086?w=800&q=80",
+    label: "Crispy Chicken Wings",
+    category: "food",
+    tall: false,
+  },
+  {
+    src: "https://images.unsplash.com/photo-1550547660-d9450f859349?w=800&q=80",
+    label: "Fasting Vegetable Pizza",
+    category: "food",
+    tall: true,
+  },
+  {
+    src: "https://images.unsplash.com/photo-1553979459-d2229ba7433b?w=800&q=80",
+    label: "Classic Beef Burger",
+    category: "food",
+    tall: false,
+  },
+  {
+    src: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80",
+    label: "Chef's Special Platter",
+    category: "food",
+    tall: false,
+  },
+
+  // ── INTERIOR ──
+  {
+    src: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80",
+    label: "Dining Area",
+    category: "interior",
+    tall: true,
+  },
+  {
+    src: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&q=80",
+    label: "Restaurant Interior",
+    category: "interior",
+    tall: false,
+  },
+  {
+    src: "https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=800&q=80",
+    label: "Evening Ambience",
+    category: "interior",
+    tall: false,
+  },
+
+  // ── DRINKS ──
+  {
+    src: "https://images.unsplash.com/photo-1544145945-f90425340c7e?w=800&q=80",
+    label: "Fresh Juice Selection",
+    category: "drinks",
+    tall: false,
+  },
+  {
+    src: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&q=80",
+    label: "Ethiopian Coffee",
+    category: "drinks",
+    tall: true,
+  },
+  {
+    src: "https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=800&q=80",
+    label: "Refreshing Cocktails",
+    category: "drinks",
+    tall: false,
+  },
+];
+
+/* ── CATEGORY CONFIG ── */
+const galleryCategories = {
+  all: "All",
+  food: "🍔 Food",
+  interior: "🏠 Interior",
+  drinks: "☕ Drinks",
+};
+
+let activeGalleryFilter = "all";
+let lightboxIndex = 0;
+let lightboxItems = [];
+
+/* ── FILTER TABS ── */
+function renderGalleryTabs() {
+  const container = document.getElementById("galleryTabs");
+
+  container.innerHTML = Object.entries(galleryCategories)
+    .map(
+      ([key, label]) => `
+      <button class="gallery-tab-btn ${key === activeGalleryFilter ? "active" : ""}"
+              data-filter="${key}">${label}</button>
+    `,
+    )
+    .join("");
+
+  container.querySelectorAll(".gallery-tab-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      activeGalleryFilter = btn.dataset.filter;
+      renderGalleryTabs();
+      renderGalleryGrid();
+    });
+  });
+}
+
+/* ── GRID ── */
+function renderGalleryGrid() {
+  const grid = document.getElementById("galleryGrid");
+
+  const items = galleryItems.filter(
+    (item) =>
+      activeGalleryFilter === "all" || item.category === activeGalleryFilter,
+  );
+
+  /* store filtered list for lightbox navigation */
+  lightboxItems = items;
+
+  grid.innerHTML = items
+    .map(
+      (item, idx) => `
+      <div class="gallery-item" style="animation-delay:${idx * 0.06}s"
+           onclick="openLightbox(${idx})">
+        <img
+          src="${item.src}"
+          alt="${item.label}"
+          style="aspect-ratio: ${item.tall ? "3/4" : "4/3"};"
+          loading="lazy"
+        />
+        <div class="gallery-item-overlay">
+          <div class="overlay-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+            </svg>
+          </div>
+          <p class="overlay-tag">${galleryCategories[item.category]}</p>
+          <p class="overlay-label">${item.label}</p>
+        </div>
+      </div>
+    `,
+    )
+    .join("");
+}
+
+/* ── LIGHTBOX ── */
+function openLightbox(idx) {
+  lightboxIndex = idx;
+  updateLightboxContent();
+  document.getElementById("lightbox").classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+
+function closeLightbox() {
+  document.getElementById("lightbox").classList.remove("open");
+  document.body.style.overflow = "";
+}
+
+function updateLightboxContent() {
+  const item = lightboxItems[lightboxIndex];
+  document.getElementById("lightboxImg").src = item.src;
+  document.getElementById("lightboxImg").alt = item.label;
+  document.getElementById("lightboxLabel").textContent = item.label;
+  document.getElementById("lightboxTag").textContent =
+    galleryCategories[item.category];
+}
+
+function shiftLightbox(dir) {
+  lightboxIndex =
+    (lightboxIndex + dir + lightboxItems.length) % lightboxItems.length;
+  updateLightboxContent();
+}
+
+function handleLightboxClick(e) {
+  if (e.target === document.getElementById("lightbox")) closeLightbox();
+}
+
+document.addEventListener("keydown", (e) => {
+  const lb = document.getElementById("lightbox");
+  if (!lb.classList.contains("open")) return;
+  if (e.key === "Escape") closeLightbox();
+  if (e.key === "ArrowRight") shiftLightbox(1);
+  if (e.key === "ArrowLeft") shiftLightbox(-1);
+});
+
 /* ── INIT ── */
 renderFilterTabs();
 renderCards();
 renderSummary();
 renderReviews();
+renderGalleryTabs();
+renderGalleryGrid();

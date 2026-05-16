@@ -243,7 +243,59 @@
       </section>
 
       <!-- gallery section -->
-      <section id="gallery"></section>
+      <!-- ── SECTION HTML ── -->
+      <section id="gallery">
+        <div class="container">
+          <div class="gallery-header">
+            <span class="subtitle">OUR GALLERY</span>
+            <h2>A Feast for the Eyes</h2>
+            <p>
+              A glimpse into our food, space, and the moments that make Sapiens
+              special.
+            </p>
+          </div>
+
+          <!-- filter tabs injected by JS -->
+          <div class="gallery-tabs" id="galleryTabs"></div>
+
+          <!-- grid injected by JS -->
+          <div class="gallery-grid" id="galleryGrid"></div>
+        </div>
+      </section>
+
+      <!-- ── LIGHTBOX ── -->
+      <div class="lightbox" id="lightbox" onclick="handleLightboxClick(event)">
+        <div class="lightbox-inner">
+          <button
+            class="lightbox-close"
+            onclick="closeLightbox()"
+            aria-label="Close"
+          >
+            &#x2715;
+          </button>
+          <button
+            class="lightbox-nav lightbox-prev"
+            onclick="shiftLightbox(-1)"
+            aria-label="Previous"
+          >
+            &#8592;
+          </button>
+          <button
+            class="lightbox-nav lightbox-next"
+            onclick="shiftLightbox(1)"
+            aria-label="Next"
+          >
+            &#8594;
+          </button>
+          <div class="lightbox-img-wrap">
+            <img id="lightboxImg" src="" alt="" />
+          </div>
+          <div class="lightbox-caption">
+            <p id="lightboxLabel"></p>
+            <span id="lightboxTag"></span>
+          </div>
+        </div>
+      </div>
     </main>
 
     <!-- footer -->

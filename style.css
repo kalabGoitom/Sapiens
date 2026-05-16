@@ -978,19 +978,307 @@ header .cta a:hover {
   background: rgba(200, 64, 26, 0.08);
 }
 
-@media (max-width: 600px) {
-  .testimonials-grid {
-    grid-template-columns: 1fr;
+#gallery {
+  padding: 90px 20px;
+  background: #fdf8f4;
+  font-family: "DM Sans", sans-serif;
+}
+
+#gallery .container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ── HEADER ── */
+.gallery-header {
+  text-align: center;
+  margin-bottom: 52px;
+}
+
+.gallery-header > span {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #c8401a;
+  background: rgba(200, 64, 26, 0.09);
+  padding: 5px 14px;
+  border-radius: 30px;
+  margin-bottom: 14px;
+}
+
+.gallery-header h2 {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 700;
+  color: #1e1008;
+  line-height: 1.2;
+  margin-bottom: 14px;
+}
+
+.gallery-header p {
+  font-size: 16px;
+  color: #7a5c50;
+  max-width: 480px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* ── FILTER TABS ── */
+.gallery-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.gallery-tab-btn {
+  background: #fff;
+  border: 1.5px solid #e8d5cc;
+  color: #7a5c50;
+  font-family: "DM Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 9px 22px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.gallery-tab-btn:hover {
+  border-color: #c8401a;
+  color: #c8401a;
+}
+.gallery-tab-btn.active {
+  background: #c8401a;
+  border-color: #c8401a;
+  color: #fff;
+}
+
+/* ── MASONRY GRID ── */
+.gallery-grid {
+  columns: 3;
+  column-gap: 16px;
+}
+
+.gallery-item {
+  break-inside: avoid;
+  margin-bottom: 16px;
+  border-radius: 14px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  animation: fadeUp 0.4s ease both;
+}
+
+.gallery-item img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+  opacity: 0;
+  animation: imgFade 0.5s ease forwards;
+}
+
+@keyframes imgFade {
+  to {
+    opacity: 1;
   }
-  .review-summary {
-    flex-direction: column;
-    gap: 8px;
-  }
-  .google-badge {
-    border-left: none;
-    padding-left: 0;
-    margin-left: 0;
-  }
+}
+
+/* ── HOVER OVERLAY ── */
+.gallery-item-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(30, 16, 8, 0.85) 0%,
+    transparent 55%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 18px;
+  border-radius: 14px;
+}
+
+.gallery-item:hover .gallery-item-overlay {
+  opacity: 1;
+}
+.gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+.overlay-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #fdf8f4;
+  line-height: 1.3;
+}
+
+.overlay-tag {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #c8401a;
+  margin-bottom: 5px;
+}
+
+/* expand icon on hover */
+.overlay-icon {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 32px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(4px);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: scale(0.8);
+  transition:
+    opacity 0.3s,
+    transform 0.3s;
+}
+
+.gallery-item:hover .overlay-icon {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.overlay-icon svg {
+  width: 16px;
+  height: 16px;
+  color: #fff;
+}
+
+/* ── LIGHTBOX ── */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 5, 3, 0.95);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.3s,
+    visibility 0.3s;
+  padding: 20px;
+}
+
+.lightbox.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lightbox-inner {
+  position: relative;
+  max-width: 860px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.lightbox-img-wrap {
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  transform: scale(0.96);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.lightbox.open .lightbox-img-wrap {
+  transform: scale(1);
+}
+
+.lightbox-img-wrap img {
+  width: 100%;
+  max-height: 72vh;
+  object-fit: contain;
+  display: block;
+  background: #1e1008;
+}
+
+.lightbox-caption {
+  text-align: center;
+}
+
+.lightbox-caption p {
+  font-size: 15px;
+  font-weight: 500;
+  color: #fdf8f4;
+}
+
+.lightbox-caption span {
+  font-size: 12px;
+  color: #7a5c50;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* nav arrows */
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  z-index: 10;
+}
+
+.lightbox-nav:hover {
+  background: rgba(200, 64, 26, 0.5);
+}
+.lightbox-prev {
+  left: -56px;
+}
+.lightbox-next {
+  right: -56px;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: -48px;
+  right: 0;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.lightbox-close:hover {
+  background: rgba(200, 64, 26, 0.5);
 }
 
 /* Animations */
@@ -1014,7 +1302,30 @@ header .cta a:hover {
   }
 }
 
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* media queries */
+
+@media (max-width: 900px) {
+  .gallery-grid {
+    columns: 2;
+  }
+  .lightbox-prev {
+    left: -10px;
+  }
+  .lightbox-next {
+    right: -10px;
+  }
+}
 
 @media (max-width: 768px) {
   section {
@@ -1087,5 +1398,26 @@ header .cta a:hover {
   .menu-modal {
     border-radius: 16px;
     max-height: 92vh;
+  }
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+  }
+  .review-summary {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .google-badge {
+    border-left: none;
+    padding-left: 0;
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 540px) {
+  .gallery-grid {
+    columns: 1;
+  }
+  .lightbox-nav {
+    display: none;
   }
 }
