@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sapiens Mekelle</title>
+    <title>Sapiens Mekelle | Restaurant & Cafe</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="shortcut icon" href="img/logo.png" type="image/x-icon" />
   </head>
@@ -29,12 +29,7 @@
 
         <!-- call to action button -->
         <div class="cta">
-          <a
-            href="tel:+ 094 366 6677
-"
-          >
-            Call Us</a
-          >
+          <a href="tel:+251943888677">Call Us</a>
         </div>
 
         <!-- nav controls -->
@@ -55,12 +50,7 @@
       <a href="#testimonials" class="menu-link">Testimonials</a>
       <a href="#gallery" class="menu-link">Gallery</a>
       <div class="cta">
-        <a
-          href="tel:+ 094 366 6677
-"
-        >
-          Call Us</a
-        >
+        <a href="tel:+251943888677">Call Us</a>
       </div>
     </div>
 
@@ -78,10 +68,15 @@
             <a href="#menu" class="btn">Explore Our Menu</a>
           </div>
         </div>
+        <!-- scroll indicator -->
+        <div class="scroll-indicator" aria-hidden="true">
+          <div class="mouse"><div class="wheel"></div></div>
+          <span>Scroll</span>
+        </div>
       </section>
 
       <!-- about section -->
-      <section id="about">
+      <section id="about" class="reveal">
         <div class="container">
           <div class="about-content">
             <span class="subtitle">About Us</span>
@@ -121,7 +116,7 @@
         </div>
       </section>
 
-      <section id="menu">
+      <section id="menu" class="reveal">
         <div class="container">
           <div class="menu-content">
             <span class="subtitle">OUR MENU</span>
@@ -193,7 +188,7 @@
       </div>
 
       <!-- review section -->
-      <section id="testimonials">
+      <section id="testimonials" class="reveal">
         <div class="container">
           <div class="testimonials-header">
             <span class="subtitle">Testimonials</span>
@@ -243,8 +238,7 @@
       </section>
 
       <!-- gallery section -->
-      <!-- ── SECTION HTML ── -->
-      <section id="gallery">
+      <section id="gallery" class="reveal">
         <div class="container">
           <div class="gallery-header">
             <span class="subtitle">OUR GALLERY</span>
@@ -298,16 +292,67 @@
       </div>
     </main>
 
-    <!-- footer -->
     <footer>
-      <!-- map section -->
-      <div></div>
+      <div class="container">
+        <!-- MAIN GRID -->
+        <div class="footer-main">
+          <!-- Brand column -->
+          <div class="footer-brand">
+            <div class="brand-logo-text">
+              Sapiens<span class="logo-dot"></span>
+            </div>
+            <p class="brand-tagline">Restaurant &amp; Cafe · Mekelle</p>
+            <p class="brand-desc">
+              Handcrafted burgers, wood-fired pizzas, and the finest coffee in
+              the heart of Mekelle. A place where every meal is made with care
+              and every guest feels at home.
+            </p>
 
-      <!-- social section -->
-      <div></div>
+            <!-- Social icons -->
+            <div class="social-links" id="socialLinks"></div>
+          </div>
 
-      <!-- footer section -->
-      <div></div>
+          <!-- Contact column -->
+          <div class="footer-col">
+            <h4>Get in Touch</h4>
+            <div class="contact-items" id="contactItems"></div>
+          </div>
+
+          <!-- Map column -->
+          <div class="footer-col">
+            <h4>Find Us</h4>
+            <div class="footer-map-wrap">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3879.777964780648!2d39.47079899999999!3d13.487775!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x166afd00288d33cf%3A0xc45db3854c294e0c!2sSapiens!5e0!3m2!1sen!2set!4v1779084014932!5m2!1sen!2set"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Sapiens location on Google Maps"
+              ></iframe>
+              <div class="map-label">Sapiens, Mekelle</div>
+            </div>
+
+            <!-- Hours -->
+            <div class="hours-list" id="hoursList"></div>
+          </div>
+        </div>
+
+        <!-- BOTTOM BAR -->
+        <div class="footer-bottom">
+          <p>© 2026 Sapiens Mekelle. All rights reserved.</p>
+          <div class="footer-bottom-right">
+            Designed &amp; developed by
+            <a
+              href="https://github.com/kalabGoitom"
+              target="_blank"
+              rel="noopener"
+              class="dev-link"
+            >
+              Kalab Goitom
+            </a>
+          </div>
+        </div>
+      </div>
     </footer>
 
     <script src="script.js"></script>

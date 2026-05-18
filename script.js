@@ -1,7 +1,7 @@
 const header = document.querySelector("header");
 
 window.addEventListener("scroll", () => {
-  if (window.scrollY > 100) {
+  if (window.scrollY > 50) {
     header.classList.add("sticky");
   } else {
     header.classList.remove("sticky");
@@ -156,13 +156,6 @@ const menuItems = [
     category: "drinks",
     featured: false,
   },
-  {
-    name: "Soft Drinks",
-    description: "Coca-Cola, Sprite, Fanta, and more",
-    price: null,
-    category: "drinks",
-    featured: false,
-  },
 ];
 
 /* ── CATEGORY CONFIG ── */
@@ -304,7 +297,17 @@ function handleOverlayClick(e) {
 }
 
 document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") closeMenuModal();
+  if (e.key === "Escape") {
+    // lightbox takes priority if open
+    const lb = document.getElementById("lightbox");
+    if (lb.classList.contains("open")) {
+      closeLightbox();
+      return;
+    }
+    closeMenuModal();
+  }
+  if (e.key === "ArrowRight") shiftLightbox(1);
+  if (e.key === "ArrowLeft") shiftLightbox(-1);
 });
 
 // testimonial
@@ -457,7 +460,7 @@ function renderReviews() {
 const galleryItems = [
   // ── FOOD ──
   {
-    src: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800&q=80",
+    src: "./img/burger.webp",
     label: "Signature Sapiens Burger",
     category: "food",
     tall: true,
@@ -495,7 +498,7 @@ const galleryItems = [
 
   // ── INTERIOR ──
   {
-    src: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80",
+    src: "./img/interior.jpg",
     label: "Dining Area",
     category: "interior",
     tall: true,
@@ -640,12 +643,134 @@ function handleLightboxClick(e) {
 }
 
 document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    const lb = document.getElementById("lightbox");
+    if (lb.classList.contains("open")) {
+      closeLightbox();
+      return;
+    }
+    closeMenuModal();
+  }
   const lb = document.getElementById("lightbox");
   if (!lb.classList.contains("open")) return;
-  if (e.key === "Escape") closeLightbox();
   if (e.key === "ArrowRight") shiftLightbox(1);
   if (e.key === "ArrowLeft") shiftLightbox(-1);
 });
+
+// footer socials and contact info
+
+const socialLinks = [
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/sapiens_mekelle/",
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+               stroke-linecap="round" stroke-linejoin="round">
+               <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+               <circle cx="12" cy="12" r="4"/>
+               <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/>
+             </svg>`,
+  },
+  {
+    label: "Facebook",
+    href: "#" /* replace with real Facebook URL */,
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+               stroke-linecap="round" stroke-linejoin="round">
+               <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+             </svg>`,
+  },
+  {
+    label: "WhatsApp",
+    href: "https://wa.me/251943888677" /* replace with real number */,
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+               stroke-linecap="round" stroke-linejoin="round">
+               <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/>
+             </svg>`,
+  },
+  {
+    label: "Call Us",
+    href: "tel:+251943888677" /* replace with real phone number */,
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+               stroke-linecap="round" stroke-linejoin="round">
+               <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+             </svg>`,
+  },
+];
+
+const contactItems = [
+  {
+    label: "Address",
+    value: "Mekelle, Tigray, Ethiopia",
+    href: "https://maps.google.com/?q=Sapiens+Mekelle",
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+               stroke-linecap="round" stroke-linejoin="round">
+               <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+               <circle cx="12" cy="10" r="3"/>
+             </svg>`,
+  },
+  {
+    label: "Phone",
+    value: "+251 943 888 677",
+    href: "tel:+251943888677",
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+               stroke-linecap="round" stroke-linejoin="round">
+               <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+             </svg>`,
+  },
+  {
+    label: "WhatsApp",
+    value: "+251 943 888 677",
+    href: "https://wa.me/251943888677",
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+               stroke-linecap="round" stroke-linejoin="round">
+               <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/>
+             </svg>`,
+  },
+];
+
+const openingHours = [
+  { day: "Mon – Fri", hours: "10:00 AM – 10:00 PM" },
+  { day: "Saturday", hours: "10:00 AM – 11:00 PM" },
+  { day: "Sunday", hours: "11:00 AM – 10:00 PM" },
+];
+
+/* ── RENDER SOCIAL LINKS ── */
+document.getElementById("socialLinks").innerHTML = socialLinks
+  .map(
+    (link) => `
+    <a class="social-link" href="${link.href}" target="_blank"
+       rel="noopener" aria-label="${link.label}" title="${link.label}">
+      ${link.icon}
+    </a>
+  `,
+  )
+  .join("");
+
+/* ── RENDER CONTACT ITEMS ── */
+document.getElementById("contactItems").innerHTML = contactItems
+  .map(
+    (item) => `
+    <a class="contact-item" href="${item.href}" target="_blank" rel="noopener">
+      <div class="contact-icon">${item.icon}</div>
+      <div class="contact-item-text">
+        <p>${item.label}</p>
+        <span>${item.value}</span>
+      </div>
+    </a>
+  `,
+  )
+  .join("");
+
+/* ── RENDER HOURS ── */
+document.getElementById("hoursList").innerHTML = openingHours
+  .map(
+    (row) => `
+    <div class="hours-row">
+      <span>${row.day}</span>
+      <span>${row.hours}</span>
+    </div>
+  `,
+  )
+  .join("");
 
 /* ── INIT ── */
 renderFilterTabs();
@@ -654,3 +779,39 @@ renderSummary();
 renderReviews();
 renderGalleryTabs();
 renderGalleryGrid();
+
+/* ── ACTIVE NAV ON SCROLL ── */
+const navLinks = document.querySelectorAll("header nav ul a");
+const sections = document.querySelectorAll("main section[id]");
+
+function updateActiveNav() {
+  let current = "";
+  sections.forEach((section) => {
+    const sectionTop = section.offsetTop - 120;
+    if (window.scrollY >= sectionTop) current = section.getAttribute("id");
+  });
+  navLinks.forEach((link) => {
+    link.classList.remove("active");
+    if (link.getAttribute("href") === `#${current}`) {
+      link.classList.add("active");
+    }
+  });
+}
+
+window.addEventListener("scroll", updateActiveNav, { passive: true });
+updateActiveNav();
+
+/* ── SCROLL REVEAL ── */
+const revealEls = document.querySelectorAll(".reveal");
+const revealObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  },
+  { threshold: 0.1 },
+);
+revealEls.forEach((el) => revealObserver.observe(el));
