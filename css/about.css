@@ -1,0 +1,86 @@
+#about {
+  background: var(--color-cream-light);
+}
+
+#about .container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+#about .about-content {
+  max-width: 650px;
+}
+
+#about .about-content h2 {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(2.2rem, 4vw, 3.8rem);
+  line-height: 1.2;
+  color: var(--color-dark-222);
+  font-weight: 700;
+  margin: 1rem 0;
+}
+
+#about .about-content p {
+  font-size: clamp(1rem, 1.2vw, 1.1rem);
+  line-height: 1.8;
+  max-width: 600px;
+}
+
+#about .features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  align-items: center;
+  justify-content: center;
+}
+
+#about .feature {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.7rem;
+  background-color: var(--color-white);
+  padding: 0.9rem 1.2rem;
+  border-radius: 50px;
+  box-shadow: 0 5px 20px var(--color-black-08);
+  transition: all 0.3s ease;
+}
+
+#about .feature:hover {
+  transform: translateY(-5px);
+}
+
+#about .feature span {
+  color: var(--color-accent);
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+#about .feature p {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--color-dark-333);
+}
+
+#about .grid-collage {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr;
+  width: 300px; /* Adjust size as needed */
+}
+
+#about .grid-collage {
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+#about .grid-collage img {
+  transition: transform 0.4s ease;
+}
+
+#about .grid-collage:hover img {
+  transform: scale(1.05);
+}

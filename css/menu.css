@@ -1,0 +1,409 @@
+/* Menu Section */
+#menu {
+  background: var(--color-cream);
+}
+#menu .container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.menu-content {
+  text-align: center;
+  margin-bottom: 48px;
+}
+.menu-content > span {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-brand);
+  background: var(--color-brand-09);
+  padding: 5px 14px;
+  border-radius: 30px;
+  margin-bottom: 14px;
+}
+.menu-content h2 {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 700;
+  color: var(--color-dark);
+  line-height: 1.2;
+  margin-bottom: 14px;
+}
+.menu-content p {
+  font-size: 16px;
+  color: var(--color-warm-700);
+  max-width: 540px;
+  margin: 0 auto 28px;
+  line-height: 1.7;
+}
+
+/* filter tabs */
+.menu-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.menu-tab-btn {
+  background: var(--color-white);
+  border: 1.5px solid var(--color-border-tan);
+  color: var(--color-warm-700);
+  font-family: "DM Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 9px 22px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.menu-tab-btn:hover {
+  border-color: var(--color-brand);
+  color: var(--color-brand);
+}
+.menu-tab-btn.active {
+  background: var(--color-brand);
+  border-color: var(--color-brand);
+  color: var(--color-white);
+}
+
+/* cards grid */
+.featured-menus {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 24px;
+  margin-top: 40px;
+}
+.menu-card {
+  background: var(--color-white);
+  border-radius: 16px;
+  border: 1px solid var(--color-border-warm);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+  animation: cardIn 0.32s ease both;
+}
+
+.menu-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px var(--color-brand-10);
+}
+
+/* scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity 1s ease,
+    transform 1s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+.card-name {
+  font-family: "Playfair Display", serif;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--color-dark);
+  line-height: 1.3;
+}
+.card-badge {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  padding: 4px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.badge-pizza {
+  background: var(--color-surface-light);
+  color: var(--color-brand-dark);
+}
+.badge-vegan {
+  background: var(--color-badge-vegan-bg);
+  color: var(--color-badge-vegan-text);
+}
+.badge-drinks {
+  background: var(--color-badge-drinks-bg);
+  color: var(--color-badge-drinks-text);
+}
+
+.card-desc {
+  font-size: 13.5px;
+  color: var(--color-warm-200);
+  line-height: 1.6;
+  flex: 1;
+}
+.card-footer {
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px dashed var(--color-border-dashed);
+  display: flex;
+  justify-content: flex-end;
+}
+.card-price {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-brand);
+}
+.card-price sup {
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--color-warm-500);
+  vertical-align: super;
+  margin-right: 2px;
+}
+.card-price-ask {
+  font-size: 13px;
+  color: var(--color-warm-500);
+}
+
+/* view full menu btn */
+.view-menu-wrap {
+  text-align: center;
+  margin-top: 52px;
+}
+.view-menu-btn {
+  background: var(--color-brand);
+  color: var(--color-white);
+  border: none;
+  border-radius: 50px;
+  padding: 15px 36px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 6px 24px var(--color-brand-35);
+  transition:
+    background 0.2s,
+    transform 0.15s;
+}
+.view-menu-btn:hover {
+  background: var(--color-brand-hover);
+  transform: translateY(-2px);
+}
+
+/* overlay */
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--color-dark-overlay);
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.3s,
+    visibility 0.3s;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.menu-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* modal */
+.menu-modal {
+  background: var(--color-cream);
+  border-radius: 20px;
+  width: 100%;
+  max-width: 740px;
+  height: min(88vh, 760px);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transform: translateY(30px) scale(0.97);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.menu-overlay.open .menu-modal {
+  transform: translateY(0) scale(1);
+}
+
+.modal-header {
+  background: var(--color-brand);
+  padding: 26px 30px 0;
+  position: relative;
+  flex-shrink: 0;
+}
+.modal-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.modal-logo {
+  width: 42px;
+  height: 42px;
+  background: var(--color-white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Playfair Display", serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-brand);
+  flex-shrink: 0;
+}
+.modal-brand-text h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-white);
+}
+.modal-brand-text p {
+  font-size: 11px;
+  color: var(--color-white-65);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+.modal-close-btn {
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  background: var(--color-white-15);
+  border: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  color: var(--color-white);
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+.modal-close-btn:hover {
+  background: var(--color-white-28);
+}
+
+.modal-tabs {
+  display: flex;
+  gap: 4px;
+  padding: 0 4px;
+}
+.modal-tab {
+  background: none;
+  border: none;
+  color: var(--color-white-60);
+  font-family: "DM Sans", sans-serif;
+  font-size: 13.5px;
+  font-weight: 500;
+  padding: 10px 18px;
+  border-radius: 10px 10px 0 0;
+  cursor: pointer;
+  transition:
+    background 0.18s,
+    color 0.18s;
+  white-space: nowrap;
+}
+.modal-tab:hover {
+  color: var(--color-white);
+  background: var(--color-white-10);
+}
+.modal-tab.active {
+  background: var(--color-cream);
+  color: var(--color-brand);
+  font-weight: 600;
+}
+
+.modal-body {
+  overflow-y: auto;
+  flex: 1;
+  padding: 28px 30px 32px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border-tan2) transparent;
+}
+.modal-section-title {
+  font-family: "Playfair Display", serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-dark);
+  margin-bottom: 20px;
+}
+.modal-section-title span {
+  border-bottom: 2px solid var(--color-brand);
+  padding-bottom: 4px;
+}
+
+.modal-menu-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.modal-menu-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 13px 14px;
+  border-radius: 12px;
+  transition: background 0.15s;
+}
+.modal-menu-item:hover {
+  background: var(--color-surface-cream);
+}
+.modal-item-num {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--color-brand);
+  min-width: 22px;
+  margin-top: 2px;
+}
+.modal-item-info {
+  flex: 1;
+}
+.modal-item-name {
+  font-size: 14.5px;
+  font-weight: 500;
+  color: var(--color-dark);
+  margin-bottom: 3px;
+}
+.modal-item-desc {
+  font-size: 12.5px;
+  color: var(--color-warm-200);
+  line-height: 1.45;
+}
+.modal-item-price {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-brand);
+  white-space: nowrap;
+}
+.modal-item-price small {
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--color-warm-500);
+}
+
+.modal-note {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--color-warm-500);
+  background: var(--color-surface-cream);
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin-top: 20px;
+}
